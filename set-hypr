@@ -43,19 +43,6 @@ If you are worried about entering your password then you may want to review the 
 
 sleep 3
 
-### Disable wifi powersave mode ###
-read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to disable WiFi powersave? (y,n) ' WIFI
-if [[ $WIFI == "Y" || $WIFI == "y" ]]; then
-    LOC="/etc/NetworkManager/conf.d/wifi-powersave.conf"
-    echo -e "$CNT - The following file has been created $LOC."
-    echo -e "[connection]\nwifi.powersave = 2" | sudo tee -a $LOC &>> $INSTLOG
-    echo -e "\n"
-    echo -e "$CNT - Restarting NetworkManager service..."
-    sleep 1
-    sudo systemctl restart NetworkManager &>> $INSTLOG
-    sleep 3
-fi
-
 ### Install all of the above pacakges ####
 read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to install the packages? (y,n) ' INST
 if [[ $INST == "Y" || $INST == "y" ]]; then
